@@ -16,6 +16,6 @@ namespace VaccineCovidManagement.NhaSanXuats
                 string filter
             );
         Task<NhaSanXuat> FindByNoiSanXuatAsync(string noiSX);
-        Task<NhaSanXuat> FindTenVaccineAsync(string tenVaccineSx);
+        Task<NhaSanXuat> FindNhaSanXuatByIdAsync(Guid id);
     }
 }

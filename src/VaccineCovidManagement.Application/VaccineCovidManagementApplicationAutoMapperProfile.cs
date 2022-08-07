@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using VaccineCovidManagement.ChiTietNhaps;
 using VaccineCovidManagement.NhaSanXuats;
 
 namespace VaccineCovidManagement;
@@ -12,5 +13,9 @@ public class VaccineCovidManagementApplicationAutoMapperProfile : Profile
          * into multiple profile classes for a better organization. */
         CreateMap<NhaSanXuat, NhaSanXuatDto>();
         CreateMap<CreateUpdateNhaSanXuatDto, NhaSanXuat>();
+
+        CreateMap<ChiTietNhap, ChiTietNhapDto>();
+        CreateMap<NhaSanXuat, GetNhaSanXuatLookup>();
+        CreateMap<CreateUpdateChiTietNhapDto, ChiTietNhap>();
     }
 }

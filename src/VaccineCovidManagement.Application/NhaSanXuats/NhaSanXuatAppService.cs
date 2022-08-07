@@ -90,15 +90,5 @@ namespace VaccineCovidManagement.NhaSanXuats
             }
             return false;
         }
-
-        public async Task<bool> CheckTenVaccineSanXuatExist(string tenVaccineSx)
-        {
-            var tenVaccineSanXuatExit = await _nhaSanXuatRepository.FindTenVaccineAsync(tenVaccineSx);
-            if(tenVaccineSanXuatExit != null)
-            {
-                return true;
-            }
-            return false;
-        }
     }
 }

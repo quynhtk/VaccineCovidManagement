@@ -44,10 +44,10 @@ namespace VaccineCovidManagement.NhaSanXuats
             return await queryable.FirstOrDefaultAsync(c => c.TenNhaSX == noiSX);
         }
 
-        public async Task<NhaSanXuat> FindTenVaccineAsync(string tenVaccineSx)
+        public async Task<NhaSanXuat> FindNhaSanXuatByIdAsync(Guid id)
         {
             var queryable = await GetMongoQueryableAsync();
-            return await queryable.FirstOrDefaultAsync(c => c.TenVaccineSX == tenVaccineSx);
+            return await queryable.FirstOrDefaultAsync(x => x.Id == id);
         }
     }
 }

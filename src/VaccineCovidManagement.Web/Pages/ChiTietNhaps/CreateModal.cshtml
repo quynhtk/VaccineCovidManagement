@@ -1,0 +1,25 @@
+﻿@page
+@model VaccineCovidManagement.Web.Pages.ChiTietNhaps.CreateModalModel
+@using Microsoft.Extensions.Localization
+@using VaccineCovidManagement.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@inject IStringLocalizer<VaccineCovidManagementResource> L
+@{
+    Layout = null;
+}
+
+<abp-card>
+    <form method="post" asp-page="/ChiTietNhaps/CreateModal">
+        <abp-modal>
+            <abp-modal-header></abp-modal-header>
+            <abp-modal-body>
+                <abp-select asp-for="CreateChiTietNhaps.NhaSxID" asp-items="@Model.NhaSanXuats"></abp-select>
+                @*<abp-input asp-for="CreateChiTietNhaps.TenVaccineSX" disabled></abp-input>*@
+                <abp-input asp-for="CreateChiTietNhaps.NgaySx"></abp-input>
+                <abp-input asp-for="CreateChiTietNhaps.HanSuDung"></abp-input>
+                <abp-input asp-for="CreateChiTietNhaps.SoLuongNhap"></abp-input>
+            </abp-modal-body>
+            <abp-modal-footer buttons="@(AbpModalButtons.Cancel| AbpModalButtons.Save)"></abp-modal-footer>
+        </abp-modal>
+    </form>
+</abp-card>

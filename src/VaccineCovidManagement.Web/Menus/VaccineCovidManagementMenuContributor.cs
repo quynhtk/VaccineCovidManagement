@@ -44,6 +44,15 @@ public class VaccineCovidManagementMenuContributor : IMenuContributor
                         url: "/NhaSanXuats")
             );
         }
+        if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.ChiTietNhaps.Default))
+        {
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                        "VaccineCovidManagement.ChiTietNhaps",
+                        l["Menu:ChiTietNhaps"],
+                        url: "/ChiTietNhaps")
+            );
+        }
 
 
         if (MultiTenancyConsts.IsEnabled)

@@ -1,4 +1,5 @@
 ﻿using MongoDB.Driver;
+using VaccineCovidManagement.ChiTietNhaps;
 using VaccineCovidManagement.NhaSanXuats;
 using Volo.Abp.Data;
 using Volo.Abp.MongoDB;
@@ -13,8 +14,8 @@ public class VaccineCovidManagementMongoDbContext : AbpMongoDbContext
      */
 
     public IMongoCollection<NhaSanXuat> NhaSanXuats => Collection<NhaSanXuat>();
-    /*public IMongoCollection<DonViYTe> DonViYTes => Collection<DonViYTe>();
     public IMongoCollection<ChiTietNhap> ChiTietNhaps => Collection<ChiTietNhap>();
+    /*public IMongoCollection<DonViYTe> DonViYTes => Collection<DonViYTe>();
     public IMongoCollection<ChiTietXuat> ChiTietXuats => Collection<ChiTietXuat>();
     public IMongoCollection<VaccineTonKho> VaccineTonKhos => Collection<VaccineTonKho>();*/
 

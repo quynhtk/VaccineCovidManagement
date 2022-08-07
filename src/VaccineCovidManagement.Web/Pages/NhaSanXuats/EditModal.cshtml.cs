@@ -29,8 +29,7 @@ namespace VaccineCovidManagement.Web.Pages.NhaSanXuats
         public async Task<IActionResult> OnPostAsync()
         {
             var nhaSanXuatExist = await _nhaSanXuatAppService.CheckTenNhaSanXuatExist(EditNhaSanXuats.TenNhaSX);
-            var vaccineSanXuatExist = await _nhaSanXuatAppService.CheckTenVaccineSanXuatExist(EditNhaSanXuats.TenVaccineSX);
-            if (nhaSanXuatExist == false && vaccineSanXuatExist == false)
+            if (nhaSanXuatExist == false)
             {
                 await _nhaSanXuatAppService.CreateAsync(
                     ObjectMapper.Map<EditNhaSanXuatViewModal, CreateUpdateNhaSanXuatDto>(EditNhaSanXuats));
