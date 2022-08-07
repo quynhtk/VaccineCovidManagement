@@ -38,6 +38,8 @@ using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.UI;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using VaccineCovidManagement.Permissions;
 
 namespace VaccineCovidManagement.Web;
 
@@ -86,6 +88,13 @@ public class VaccineCovidManagementWebModule : AbpModule
         ConfigureNavigationServices();
         ConfigureAutoApiControllers();
         ConfigureSwaggerServices(context.Services);
+
+        Configure<RazorPagesOptions>(options =>
+        {
+            options.Conventions.AuthorizePage("/NhaSanXuats/Index", VaccineCovidManagementPermissions.NhaSanXuats.Default);
+            options.Conventions.AuthorizePage("/NhaSanXuats/CreateModal", VaccineCovidManagementPermissions.NhaSanXuats.Create);
+            options.Conventions.AuthorizePage("/NhaSanXuats/EditModal", VaccineCovidManagementPermissions.NhaSanXuats.Edit);
+        });
     }
 
     private void ConfigureUrls(IConfiguration configuration)
@@ -150,9 +159,10 @@ public class VaccineCovidManagementWebModule : AbpModule
     {
         Configure<AbpLocalizationOptions>(options =>
         {
+            options.Languages.Add(new LanguageInfo("vi", "vi", "VietNamese"));
+            /*options.Languages.Add(new LanguageInfo("en", "en", "English"));
             options.Languages.Add(new LanguageInfo("ar", "ar", "العربية"));
             options.Languages.Add(new LanguageInfo("cs", "cs", "Čeština"));
-            options.Languages.Add(new LanguageInfo("en", "en", "English"));
             options.Languages.Add(new LanguageInfo("en-GB", "en-GB", "English (UK)"));
             options.Languages.Add(new LanguageInfo("hu", "hu", "Magyar"));
             options.Languages.Add(new LanguageInfo("fi", "fi", "Finnish"));
@@ -168,7 +178,7 @@ public class VaccineCovidManagementWebModule : AbpModule
             options.Languages.Add(new LanguageInfo("zh-Hans", "zh-Hans", "简体中文"));
             options.Languages.Add(new LanguageInfo("zh-Hant", "zh-Hant", "繁體中文"));
             options.Languages.Add(new LanguageInfo("de-DE", "de-DE", "Deutsch", "de"));
-            options.Languages.Add(new LanguageInfo("es", "es", "Español"));
+            options.Languages.Add(new LanguageInfo("es", "es", "Español"));*/
         });
     }
 

@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using VaccineCovidManagement.Localization;
 using VaccineCovidManagement.MultiTenancy;
+using VaccineCovidManagement.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
@@ -23,7 +24,7 @@ public class VaccineCovidManagementMenuContributor : IMenuContributor
         var administration = context.Menu.GetAdministration();
         var l = context.GetLocalizer<VaccineCovidManagementResource>();
 
-        context.Menu.Items.Insert(
+        /*context.Menu.Items.Insert(
             0,
             new ApplicationMenuItem(
                 VaccineCovidManagementMenus.Home,
@@ -32,7 +33,18 @@ public class VaccineCovidManagementMenuContributor : IMenuContributor
                 icon: "fas fa-home",
                 order: 0
             )
-        );
+        );*/
+
+        if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.NhaSanXuats.Default))
+        {
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                        "VaccineCovidManagement.NhaSanXuats",
+                        l["Menu:NhaSanXuats"],
+                        url: "/NhaSanXuats")
+            );
+        }
+
 
         if (MultiTenancyConsts.IsEnabled)
         {

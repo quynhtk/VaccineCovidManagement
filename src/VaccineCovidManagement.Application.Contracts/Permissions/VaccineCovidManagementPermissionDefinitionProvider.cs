@@ -8,9 +8,15 @@ public class VaccineCovidManagementPermissionDefinitionProvider : PermissionDefi
 {
     public override void Define(IPermissionDefinitionContext context)
     {
-        var myGroup = context.AddGroup(VaccineCovidManagementPermissions.GroupName);
         //Define your own permissions here. Example:
         //myGroup.AddPermission(VaccineCovidManagementPermissions.MyPermission1, L("Permission:MyPermission1"));
+
+        var vaccineCovidGroup = context.AddGroup(VaccineCovidManagementPermissions.GroupName, L("Permission:VaccineCovidManagement"));
+
+        var nhaSanXuatPermission = vaccineCovidGroup.AddPermission(VaccineCovidManagementPermissions.NhaSanXuats.Default, L("Permission:NhaSanXuats"));
+        nhaSanXuatPermission.AddChild(VaccineCovidManagementPermissions.NhaSanXuats.Create, L("Permission:NhaSanXuats.Create"));
+        nhaSanXuatPermission.AddChild(VaccineCovidManagementPermissions.NhaSanXuats.Edit, L("Permission:NhaSanXuats.Edit"));
+        nhaSanXuatPermission.AddChild(VaccineCovidManagementPermissions.NhaSanXuats.Delete, L("Permission:NhaSanXuats.Delete"));
     }
 
     private static LocalizableString L(string name)

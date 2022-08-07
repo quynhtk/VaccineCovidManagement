@@ -1,0 +1,34 @@
+﻿@page
+@model VaccineCovidManagement.Web.Pages.NhaSanXuats.IndexModel
+@using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authorization
+@using VaccineCovidManagement.Localization
+@using VaccineCovidManagement.Permissions
+@inject IAuthorizationService AuthorizationService
+@inject IStringLocalizer<VaccineCovidManagementResource> L
+@section scripts
+{
+    <abp-script src="/Pages/NhaSanXuats/Index.js" />
+}
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Nhà sản xuất"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+            @if (await AuthorizationService.IsGrantedAsync(VaccineCovidManagementPermissions.NhaSanXuats.Create))
+            {
+                <abp-button id="NhaSanXuatButton"
+                        text="@L["Tạo mới Nhà sản xuất"].Value"
+                        icon="plus"
+                        button-type="Primary" />
+            }
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="NhaSanXuatTable"/>
+    </abp-card-body>
+</abp-card>

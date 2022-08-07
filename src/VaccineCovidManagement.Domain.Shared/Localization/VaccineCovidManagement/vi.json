@@ -2,7 +2,13 @@
   "culture": "vi",
   "texts": {
     "Menu:Home": "Trang chủ",
+    "Menu:NhaSanXuats": "Nhà sản xuất",
     "Welcome": "Chào mừng bạn",
-    "LongWelcomeMessage": "Chào mừng bạn đến ứng dụng. Đây là một dự án khởi nghiệp dựa trên khung ABP. Để biết thêm thông tin, hãy truy cập abp.io."
+    "LongWelcomeMessage": "Chào mừng bạn đến ứng dụng. Đây là một dự án khởi nghiệp dựa trên khung ABP. Để biết thêm thông tin, hãy truy cập abp.io.",
+    "Permission:VaccineCovidManagement": "Quản lý Vaccine Covid",
+    "Permission:NhaSanXuats": "Nhà sản xuất",
+    "Permission:NhaSanXuats.Create": "Tạo mới Nhà sản xuất",
+    "Permission:NhaSanXuats.Edit": "Chỉnh sửa Nhà sản xuất",
+    "Permission:NhaSanXuats.Delete": "Xóa Nhà sản xuất"
   }
 }

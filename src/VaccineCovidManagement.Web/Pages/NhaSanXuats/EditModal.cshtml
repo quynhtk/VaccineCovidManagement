@@ -1,0 +1,26 @@
+﻿@page
+@model VaccineCovidManagement.Web.Pages.NhaSanXuats.EditModalModel
+@using Microsoft.Extensions.Localization
+@using VaccineCovidManagement.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@inject IStringLocalizer<VaccineCovidManagementResource> L
+@{
+    Layout = null;
+}
+
+<abp-card>
+    <form method="post" asp-page="/NhaSanXuats/EditModal">
+        <abp-modal>
+            <abp-modal-header></abp-modal-header>
+            <abp-modal-body>
+                <abp-input asp-for="EditNhaSanXuats.Id"></abp-input>
+                <abp-input asp-for="EditNhaSanXuats.TenNhaSX"></abp-input>
+                <abp-input asp-for="EditNhaSanXuats.TenVaccineSX"></abp-input>
+                <abp-input asp-for="EditNhaSanXuats.Diachi"></abp-input>
+                <abp-input asp-for="EditNhaSanXuats.SDT"></abp-input>
+                <abp-input asp-for="EditNhaSanXuats.Email"></abp-input>
+            </abp-modal-body>
+            <abp-modal-footer buttons="@(AbpModalButtons.Cancel| AbpModalButtons.Save)"></abp-modal-footer>
+        </abp-modal>
+    </form>
+</abp-card>
