@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VaccineCovidManagement.ChiTietNhaps;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -11,11 +12,14 @@ namespace VaccineCovidManagement.NhaSanXuats
     public class NhaSanXuatAppService : ApplicationService, INhaSanXuatAppService
     {
         private readonly INhaSanXuatRepository _nhaSanXuatRepository;
+        private readonly IChiTietNhapRepository _chiTietNhapRepository;
 
         public NhaSanXuatAppService(
-            INhaSanXuatRepository nhaSanXuatRepository)
+            INhaSanXuatRepository nhaSanXuatRepository,
+            IChiTietNhapRepository chiTietNhapRepository)
         {
             _nhaSanXuatRepository = nhaSanXuatRepository;
+            _chiTietNhapRepository = chiTietNhapRepository;
         }
 
         public async Task<PagedResultDto<NhaSanXuatDto>> GetListAsync(GetNhaSanXuatInput input)
@@ -40,8 +44,7 @@ namespace VaccineCovidManagement.NhaSanXuats
             }
             return new PagedResultDto<NhaSanXuatDto>(
                     count,
-                    nhasanxuatDto
-                );
+                    nhasanxuatDto);
         }
 
         public async Task<NhaSanXuatDto> GetNhaSanXuatAsync(Guid Id)
@@ -72,13 +75,13 @@ namespace VaccineCovidManagement.NhaSanXuats
         public async Task<bool> DeleteAsync(Guid id)
         {
             var noiSX = await _nhaSanXuatRepository.FindAsync(id);
-            //var vaccineNhap = await _chiTietNhapRepository.FindByIdNoiSanXuatAsync(id);
-            if (noiSX == null)
+            var vaccineNhap = await _chiTietNhapRepository.FindByIdNoiSanXuatAsync(id);
+            if (vaccineNhap != null)
             {
-                return false;
+                await _nhaSanXuatRepository.DeleteAsync(noiSX);
+                return true;
             }
-            await _nhaSanXuatRepository.DeleteAsync(noiSX);
-            return true;
+            return false;
         }
 
         public async Task<bool> CheckTenNhaSanXuatExist(string noiSx)

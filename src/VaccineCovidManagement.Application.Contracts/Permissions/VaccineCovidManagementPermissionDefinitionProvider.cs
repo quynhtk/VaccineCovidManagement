@@ -24,6 +24,11 @@ public class VaccineCovidManagementPermissionDefinitionProvider : PermissionDefi
         chiTietNhapPermission.AddChild(VaccineCovidManagementPermissions.ChiTietNhaps.Delete, L("Permission:ChiTietNhaps.Delete"));
 
         var vaccineTonKhoPermission = vaccineCovidGroup.AddPermission(VaccineCovidManagementPermissions.VaccineTonKhos.Default, L("Permission:VaccineTonKhos"));
+
+        var donViYTePermission = vaccineCovidGroup.AddPermission(VaccineCovidManagementPermissions.DonViYTes.Default, L("Permission:DonViYTes"));
+        donViYTePermission.AddChild(VaccineCovidManagementPermissions.DonViYTes.Create, L("Permission:DonViYTes.Create"));
+        donViYTePermission.AddChild(VaccineCovidManagementPermissions.DonViYTes.Edit, L("Permission:DonViYTes.Edit"));
+        donViYTePermission.AddChild(VaccineCovidManagementPermissions.DonViYTes.Delete, L("Permission:DonViYTes.Delete"));
     }
 
     private static LocalizableString L(string name)

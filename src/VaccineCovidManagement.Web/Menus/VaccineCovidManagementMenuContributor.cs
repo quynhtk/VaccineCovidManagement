@@ -62,6 +62,15 @@ public class VaccineCovidManagementMenuContributor : IMenuContributor
                         url: "/VaccineTonKhos")
             );
         }
+        if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.DonViYTes.Default))
+        {
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                        "VaccineCovidManagement.DonViYTes",
+                        l["Menu:DonViYTes"],
+                        url: "/DonViYTes")
+            );
+        }
 
 
         if (MultiTenancyConsts.IsEnabled)

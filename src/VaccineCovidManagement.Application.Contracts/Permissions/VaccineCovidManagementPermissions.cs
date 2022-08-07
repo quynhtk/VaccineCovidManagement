@@ -27,4 +27,12 @@ public static class VaccineCovidManagementPermissions
     {
         public const string Default = GroupName + ".VaccineTonKhos";
     }
+
+    public static class DonViYTes
+    {
+        public const string Default = GroupName + ".DonViYTes";
+        public const string Create = Default + ".Create";
+        public const string Edit = Default + ".Edit";
+        public const string Delete = Default + ".Delete";
+    }
 }

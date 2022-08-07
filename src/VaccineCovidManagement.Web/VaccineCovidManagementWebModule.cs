@@ -100,6 +100,10 @@ public class VaccineCovidManagementWebModule : AbpModule
             options.Conventions.AuthorizePage("/ChiTietNhaps/EditModal", VaccineCovidManagementPermissions.ChiTietNhaps.Edit);
 
             options.Conventions.AuthorizePage("/VaccineTonKhos/Index", VaccineCovidManagementPermissions.VaccineTonKhos.Default);
+
+            options.Conventions.AuthorizePage("/DonViYTes/Index", VaccineCovidManagementPermissions.DonViYTes.Default);
+            options.Conventions.AuthorizePage("/DonViYTes/CreateModal", VaccineCovidManagementPermissions.DonViYTes.Create);
+            options.Conventions.AuthorizePage("/DonViYTes/EditModal", VaccineCovidManagementPermissions.DonViYTes.Edit);
         });
     }
 

@@ -25,7 +25,6 @@ namespace VaccineCovidManagement.NhaSanXuats
             string sorting,
             string filter)
         {
-
             var queryable = await GetMongoQueryableAsync();
             return await queryable
                 .WhereIf<NhaSanXuat, IMongoQueryable<NhaSanXuat>>(
