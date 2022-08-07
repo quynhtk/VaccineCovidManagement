@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using VaccineCovidManagement.NhaSanXuats;
+using VaccineCovidManagement.VaccineTonKhos;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -13,13 +14,16 @@ namespace VaccineCovidManagement.ChiTietNhaps
     {
         private readonly IChiTietNhapRepository _chiTietNhapRepository;
         private readonly INhaSanXuatRepository _nhaSanXuatRepository;
+        private readonly IVaccineTonKhoRepository _vaccineTonKhoRepository;
 
         public ChiTietNhapAppService(
             IChiTietNhapRepository chiTietNhapRepository,
-            INhaSanXuatRepository nhaSanXuatRepository)
+            INhaSanXuatRepository nhaSanXuatRepository,
+            IVaccineTonKhoRepository vaccineTonKhoRepository)
         {
             _chiTietNhapRepository = chiTietNhapRepository;
             _nhaSanXuatRepository = nhaSanXuatRepository;
+            _vaccineTonKhoRepository = vaccineTonKhoRepository;
         }
 
         public async Task<PagedResultDto<ChiTietNhapDto>> GetListAsync(GetChiTietNhapInput input)
@@ -86,14 +90,17 @@ namespace VaccineCovidManagement.ChiTietNhaps
         public async Task<bool> DeleteAsync(Guid id)
         {
             var chitietnhap = await _chiTietNhapRepository.FindAsync(id);
-            //var vaccine = await _nhaSanXuatRepository.FindByIdVaccineAsync(id);
-            //if (vaccine != null)
-            //{
-            //    vaccine.SoLuongTonKho = vaccine.SoLuongTonKho - chitietnhap.SoLuongNhap;
-            //    await _chiTietNhapRepository.DeleteAsync(chitietnhap);
-            //    return true;
-            //}
-            return false;
+            /*
+            var vaccine = await _vaccineTonKhoRepository.FindVaccineTonKhoByIdAsync(id);
+            if (vaccine != null)
+            {
+                vaccine.SoLuongTonKho = vaccine.SoLuongTonKho - chitietnhap.SoLuongNhap;
+                await _chiTietNhapRepository.DeleteAsync(chitietnhap);
+                return true;
+            }*/
+
+            await _chiTietNhapRepository.DeleteAsync(chitietnhap);
+            return true;
         }
     }
 }

@@ -7,6 +7,6 @@ namespace VaccineCovidManagement.ChiTietNhaps
 {
     public class GetNhaSanXuatLookup : EntityDto<Guid>
     {
-        public string DiaChi { get; set; }
+        public string TenNhaSX { get; set; }
     }
 }

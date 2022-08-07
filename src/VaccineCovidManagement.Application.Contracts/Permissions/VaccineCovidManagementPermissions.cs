@@ -22,4 +22,9 @@ public static class VaccineCovidManagementPermissions
         public const string Edit = Default + ".Edit";
         public const string Delete = Default + ".Delete";
     }
+
+    public static class VaccineTonKhos
+    {
+        public const string Default = GroupName + ".VaccineTonKhos";
+    }
 }

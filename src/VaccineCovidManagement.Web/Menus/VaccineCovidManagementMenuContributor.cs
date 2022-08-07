@@ -53,6 +53,15 @@ public class VaccineCovidManagementMenuContributor : IMenuContributor
                         url: "/ChiTietNhaps")
             );
         }
+        if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.VaccineTonKhos.Default))
+        {
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                        "VaccineCovidManagement.VaccineTonKhos",
+                        l["Menu:VaccineTonKhos"],
+                        url: "/VaccineTonKhos")
+            );
+        }
 
 
         if (MultiTenancyConsts.IsEnabled)

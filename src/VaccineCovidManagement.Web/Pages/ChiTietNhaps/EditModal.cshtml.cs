@@ -36,7 +36,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             EditChiTietNhaps = ObjectMapper.Map<ChiTietNhapDto, EditChiTietNhapViewModal>(chitietnhap);
             var nhaSanXuatLookup = await _chiTietNhapAppService.GetNhaSanXuatLookupAsync();
             NhaSanXuats = nhaSanXuatLookup.Items
-                .Select(n => new SelectListItem(n.DiaChi, n.Id.ToString()))
+                .Select(n => new SelectListItem(n.TenNhaSX, n.Id.ToString()))
                 .ToList();
         }
 

@@ -1,0 +1,21 @@
+﻿@page
+@model VaccineCovidManagement.Web.Pages.VaccineTonKhos.IndexModel
+@using Microsoft.Extensions.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.AspNetCore.Authorization
+@using VaccineCovidManagement.Localization
+@using VaccineCovidManagement.Permissions
+@inject IAuthorizationService AuthorizationService
+@inject IStringLocalizer<VaccineCovidManagementResource> L
+@section scripts
+{
+    <abp-script src="/Pages/VaccineTonKhos/Index.js" />
+}
+<abp-card>
+    <abp-card-header>
+        <abp-card-title>@L["Vaccine tồn kho"]</abp-card-title>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="VaccineTonKhoTable"/>
+    </abp-card-body>
+</abp-card>

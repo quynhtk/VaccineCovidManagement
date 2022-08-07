@@ -98,6 +98,8 @@ public class VaccineCovidManagementWebModule : AbpModule
             options.Conventions.AuthorizePage("/ChiTietNhaps/Index", VaccineCovidManagementPermissions.ChiTietNhaps.Default);
             options.Conventions.AuthorizePage("/ChiTietNhaps/CreateModal", VaccineCovidManagementPermissions.ChiTietNhaps.Create);
             options.Conventions.AuthorizePage("/ChiTietNhaps/EditModal", VaccineCovidManagementPermissions.ChiTietNhaps.Edit);
+
+            options.Conventions.AuthorizePage("/VaccineTonKhos/Index", VaccineCovidManagementPermissions.VaccineTonKhos.Default);
         });
     }
 
