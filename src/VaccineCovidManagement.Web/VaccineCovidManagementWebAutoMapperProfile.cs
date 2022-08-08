@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using VaccineCovidManagement.ChiTietNhaps;
+using VaccineCovidManagement.DonViYTes;
 using VaccineCovidManagement.NhaSanXuats;
 
 namespace VaccineCovidManagement.Web;
@@ -16,5 +17,9 @@ public class VaccineCovidManagementWebAutoMapperProfile : Profile
         CreateMap<Pages.ChiTietNhaps.CreateModalModel.CreateChiTietNhapViewModal, CreateUpdateChiTietNhapDto>();
         CreateMap<ChiTietNhapDto, Pages.ChiTietNhaps.EditModalModel.EditChiTietNhapViewModal>();
         CreateMap<Pages.ChiTietNhaps.EditModalModel.EditChiTietNhapViewModal, CreateUpdateChiTietNhapDto>();
+
+        CreateMap<Pages.DonViYTes.CreateModalModel.CreateDonViYTeViewModal, CreateUpdateDonViYTeDto>();
+        CreateMap<DonViYTeDto, Pages.DonViYTes.EditModalModel.EditDonViYTeViewModal>();
+        CreateMap<Pages.DonViYTes.EditModalModel.EditDonViYTeViewModal, CreateUpdateDonViYTeDto>();
     }
 }
