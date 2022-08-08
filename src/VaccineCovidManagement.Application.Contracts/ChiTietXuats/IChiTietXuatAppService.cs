@@ -10,6 +10,7 @@ namespace VaccineCovidManagement.ChiTietXuats
     public interface IChiTietXuatAppService : IApplicationService
     {
         Task<PagedResultDto<ChiTietXuatDto>> GetListAsync(GetChiTietXuatInput input);
+        Task<ChiTietXuatDto> GetChiTietXuatAsync(Guid id);
         Task<ChiTietXuatDto> CreateAsync(CreateUpdateChiTietXuatDto input);
         Task<ChiTietXuatDto> UpdateAsync(Guid id, CreateUpdateChiTietXuatDto input);
         Task<bool> DeleteAsync(Guid id);

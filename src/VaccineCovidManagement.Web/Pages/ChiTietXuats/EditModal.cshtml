@@ -1,0 +1,24 @@
+﻿@page
+@model VaccineCovidManagement.Web.Pages.ChiTietXuats.EditModalModel
+@using Microsoft.Extensions.Localization
+@using VaccineCovidManagement.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Modal
+@inject IStringLocalizer<VaccineCovidManagementResource> L
+@{
+    Layout = null;
+}
+<abp-card>
+    <form method="post" asp-page="/ChiTietXuats/EditModal">
+        <abp-modal>
+            <abp-modal-header></abp-modal-header>
+            <abp-modal-body>
+                <abp-input asp-for="EditChiTietXuat.Id"></abp-input>
+                <abp-select asp-for="EditChiTietXuat.DonViID" asp-items="@Model.DonViYTes"></abp-select>
+                <abp-select asp-for="EditChiTietXuat.VaccineTonKhoID" asp-items="@Model.Vaccines"></abp-select>
+                <abp-input asp-for="EditChiTietXuat.SoLuongXuat"></abp-input>
+            </abp-modal-body>
+            <abp-modal-footer buttons="@(AbpModalButtons.Cancel| AbpModalButtons.Save)">
+            </abp-modal-footer>
+        </abp-modal>
+    </form>
+</abp-card>

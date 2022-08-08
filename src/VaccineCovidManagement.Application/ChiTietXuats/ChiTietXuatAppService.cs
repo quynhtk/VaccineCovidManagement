@@ -54,6 +54,12 @@ namespace VaccineCovidManagement.ChiTietXuats
                     chiTietXuatDto);
         }
 
+        public async Task<ChiTietXuatDto> GetChiTietXuatAsync(Guid id)
+        {
+            var chitietxuat = await _chiTietXuatRepository.FindAsync(id);
+            return ObjectMapper.Map<ChiTietXuat, ChiTietXuatDto>(chitietxuat);
+        }
+
         public async Task<ListResultDto<GetDonViYTeLookup>> GetDonViYTeLookup()
         {
             var donviyte = await _donViYTeRepository.GetListAsync();

@@ -49,5 +49,27 @@ namespace VaccineCovidManagement.VaccineTonKhos
                     count,
                     vaccinedto);
         }
+
+        public async Task<VaccineTonKhoDto> GetVaccineTonKhoAsync(Guid id)
+        {
+            var vaccinetk = await _vaccineTonKhoRepository.FindAsync(id);
+            return ObjectMapper.Map<VaccineTonKho, VaccineTonKhoDto>(vaccinetk);
+        }
+
+        public async Task<VaccineTonKhoDto> CreateAsync(CreateUpdateVaccineTonKhoDto input)
+        {
+            var createvaccine = ObjectMapper.Map<CreateUpdateVaccineTonKhoDto, VaccineTonKho>(input);
+            await _vaccineTonKhoRepository.InsertAsync(createvaccine);
+            return ObjectMapper.Map<VaccineTonKho, VaccineTonKhoDto>(createvaccine);
+        }
+
+        public async Task<VaccineTonKhoDto> UpdateAsync(Guid id, CreateUpdateVaccineTonKhoDto input)
+        {
+            var updatevaccine = await _vaccineTonKhoRepository.FindAsync(id);
+            updatevaccine.ChiTietNhapId = input.ChiTietNhapId;
+            updatevaccine.SoLuongTonKho = input.SoLuongTonKho;
+            await _vaccineTonKhoRepository.UpdateAsync(updatevaccine);
+            return ObjectMapper.Map<VaccineTonKho, VaccineTonKhoDto>(updatevaccine);
+        }
     }
 }

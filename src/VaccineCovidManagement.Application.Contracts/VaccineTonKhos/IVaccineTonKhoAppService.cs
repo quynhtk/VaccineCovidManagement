@@ -10,5 +10,8 @@ namespace VaccineCovidManagement.VaccineTonKhos
     public interface IVaccineTonKhoAppService : IApplicationService
     {
         Task<PagedResultDto<VaccineTonKhoDto>> GetListAsync(GetVaccineTonKhoInput input);
+        Task<VaccineTonKhoDto> GetVaccineTonKhoAsync(Guid id);
+        Task<VaccineTonKhoDto> CreateAsync(CreateUpdateVaccineTonKhoDto input);
+        Task<VaccineTonKhoDto> UpdateAsync(Guid id, CreateUpdateVaccineTonKhoDto input);
     }
 }
