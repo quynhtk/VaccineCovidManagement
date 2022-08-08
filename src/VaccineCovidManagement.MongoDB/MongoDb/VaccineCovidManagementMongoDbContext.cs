@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using VaccineCovidManagement.ChiTietNhaps;
+using VaccineCovidManagement.ChiTietXuats;
 using VaccineCovidManagement.DonViYTes;
 using VaccineCovidManagement.NhaSanXuats;
 using VaccineCovidManagement.VaccineTonKhos;
@@ -19,7 +20,7 @@ public class VaccineCovidManagementMongoDbContext : AbpMongoDbContext
     public IMongoCollection<ChiTietNhap> ChiTietNhaps => Collection<ChiTietNhap>();
     public IMongoCollection<VaccineTonKho> VaccineTonKhos => Collection<VaccineTonKho>();
     public IMongoCollection<DonViYTe> DonViYTes => Collection<DonViYTe>();
-    /*public IMongoCollection<ChiTietXuat> ChiTietXuats => Collection<ChiTietXuat>();*/
+    public IMongoCollection<ChiTietXuat> ChiTietXuats => Collection<ChiTietXuat>();
 
     protected override void CreateModel(IMongoModelBuilder modelBuilder)
     {

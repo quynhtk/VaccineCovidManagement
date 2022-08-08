@@ -25,7 +25,6 @@ namespace VaccineCovidManagement.ChiTietNhaps
             string sorting,
             string filter)
         {
-
             var queryable = await GetMongoQueryableAsync();
             return await queryable
                 .WhereIf<ChiTietNhap, IMongoQueryable<ChiTietNhap>>(

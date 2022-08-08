@@ -6,6 +6,7 @@
     "Menu:ChiTietNhaps": "Vaccine nhập",
     "Menu:VaccineTonKhos": "Vaccine tồn kho",
     "Menu:DonViYTes": "Đơn vị Y tế",
+    "Menu:ChiTietXuats": "Vaccine xuất",
     "Welcome": "Chào mừng bạn",
     "LongWelcomeMessage": "Chào mừng bạn đến ứng dụng. Đây là một dự án khởi nghiệp dựa trên khung ABP. Để biết thêm thông tin, hãy truy cập abp.io.",
     "Permission:VaccineCovidManagement": "Quản lý Vaccine Covid",
@@ -21,6 +22,10 @@
     "Permission:DonViYTes": "Đơn vị Y tế",
     "Permission:DonViYTes.Create": "Tạo mới Đơn vị Y tế",
     "Permission:DonViYTes.Edit": "Chỉnh sửa Đơn vị Y tế",
-    "Permission:DonViYTes.Delete": "Xóa Đơn vị Y tế"
+    "Permission:DonViYTes.Delete": "Xóa Đơn vị Y tế",
+    "Permission:ChiTietXuats": "Vaccine xuất",
+    "Permission:ChiTietXuats.Create": "Tạo mới Vaccine xuất",
+    "Permission:ChiTietXuats.Edit": "Chỉnh sửa Vaccine xuất",
+    "Permission:ChiTietXuats.Delete": "Xóa Vaccine xuất"
   }
 }
