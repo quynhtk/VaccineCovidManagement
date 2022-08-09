@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VaccineCovidManagement.ChiTietXuats;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Application.Services;
 
@@ -11,10 +12,14 @@ namespace VaccineCovidManagement.DonViYTes
     public class DonViYTeAppService : ApplicationService, IDonViYTeAppService
     {
         private readonly IDonViYTeRepository _donViYTeRepository;
+        private readonly IChiTietXuatRepository _chiTietXuatRepository;
 
-        public DonViYTeAppService(IDonViYTeRepository donViYTeRepository)
+        public DonViYTeAppService(
+            IDonViYTeRepository donViYTeRepository,
+            IChiTietXuatRepository chiTietXuatRepository)
         {
             _donViYTeRepository = donViYTeRepository;
+            _chiTietXuatRepository = chiTietXuatRepository;
         }
 
         public async Task<PagedResultDto<DonViYTeDto>> GetListAsync(GetDonViYTeInput input)
@@ -68,6 +73,11 @@ namespace VaccineCovidManagement.DonViYTes
         public async Task<bool> DeleteAsync(Guid id)
         {
             var donviyte = await _donViYTeRepository.FindAsync(id);
+            var chitietxuat = await _chiTietXuatRepository.FindByIdDonViYTeAsync(id);
+            if(chitietxuat != null)
+            {
+                return false;
+            }
             await _donViYTeRepository.DeleteAsync(donviyte);
             return true;
         }

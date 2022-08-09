@@ -98,15 +98,12 @@ namespace VaccineCovidManagement.ChiTietXuats
         public async Task<bool> DeleteAsync(Guid id)
         {
             var chitietxuat = await _chiTietXuatRepository.FindAsync(id);
-            /*
             var vaccine = await _vaccineTonKhoRepository.FindVaccineTonKhoByIdAsync(id);
             if (vaccine != null)
             {
-                vaccine.SoLuongTonKho = vaccine.SoLuongTonKho - chitietnhap.SoLuongNhap;
-                await _chiTietNhapRepository.DeleteAsync(chitietnhap);
-                return true;
-            }*/
-
+                return false;
+            }
+            vaccine.SoLuongTonKho = vaccine.SoLuongTonKho + chitietxuat.SoLuongXuat;
             await _chiTietXuatRepository.DeleteAsync(chitietxuat);
             return true;
         }

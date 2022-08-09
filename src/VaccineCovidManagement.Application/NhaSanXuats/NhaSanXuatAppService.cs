@@ -78,10 +78,10 @@ namespace VaccineCovidManagement.NhaSanXuats
             var vaccineNhap = await _chiTietNhapRepository.FindByIdNoiSanXuatAsync(id);
             if (vaccineNhap != null)
             {
-                await _nhaSanXuatRepository.DeleteAsync(noiSX);
-                return true;
+                return false;
             }
-            return false;
+            await _nhaSanXuatRepository.DeleteAsync(noiSX);
+            return true;
         }
 
         public async Task<bool> CheckTenNhaSanXuatExist(string noiSx)

@@ -58,7 +58,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             {
                 throw new UserFriendlyException(L["Số lượng Vaccine nhập phải lớn hơn 0"]);
             }
-            return NoContent();
+            return RedirectToAction("Index", "VaccineTonKhos");
         }
 
         public class EditChiTietNhapViewModal
