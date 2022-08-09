@@ -79,7 +79,7 @@ namespace VaccineCovidManagement.ChiTietNhaps
             var chiTietNhap = await _chiTietNhapRepository.FindAsync(id);
             chiTietNhap.NhaSxID = input.NhaSxID;
             chiTietNhap.TenNhaSX = input.TenNhaSX;
-            //chiTietNhap.TenVaccineSX = input.TenVaccineSX;
+            chiTietNhap.TenVaccineSX = input.TenVaccineSX;
             chiTietNhap.NgaySx = input.NgaySx;
             chiTietNhap.HanSuDung = input.HanSuDung;
             chiTietNhap.SoLuongNhap = input.SoLuongNhap;

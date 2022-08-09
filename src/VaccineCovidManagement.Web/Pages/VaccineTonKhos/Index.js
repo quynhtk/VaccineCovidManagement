@@ -2,6 +2,8 @@
 $(function () {
     var l = abp.localization.getResource('VaccineCovidManagement');
 
+    var createModal = new abp.ModalManager(abp.appPath + 'VaccineTonKhos/CreateModal');
+
     var datatable = $('#VaccineTonKhoTable').DataTable(
         abp.libs.datatables.normalizeConfiguration({
             serverSide: true,
@@ -36,4 +38,13 @@ $(function () {
             ]
         })
     );
+
+    createModal.onResult(function () {
+        datatable.ajax.reload();
+    });
+
+    $('#VaccineTonKhoButton').click(function (e) {
+        e.preventDefault();
+        createModal.open();
+    });
 });

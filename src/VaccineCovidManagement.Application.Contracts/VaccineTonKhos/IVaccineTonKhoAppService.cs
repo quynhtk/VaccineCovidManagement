@@ -11,6 +11,7 @@ namespace VaccineCovidManagement.VaccineTonKhos
     {
         Task<PagedResultDto<VaccineTonKhoDto>> GetListAsync(GetVaccineTonKhoInput input);
         Task<VaccineTonKhoDto> GetVaccineTonKhoAsync(Guid id);
+        Task<ListResultDto<GetChiTietNhapLookup>> GetChiTietNhapLookupAsync();
         Task<VaccineTonKhoDto> CreateAsync(CreateUpdateVaccineTonKhoDto input);
         Task<VaccineTonKhoDto> UpdateAsync(Guid id, CreateUpdateVaccineTonKhoDto input);
     }

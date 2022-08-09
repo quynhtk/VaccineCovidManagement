@@ -24,6 +24,7 @@ public class VaccineCovidManagementPermissionDefinitionProvider : PermissionDefi
         chiTietNhapPermission.AddChild(VaccineCovidManagementPermissions.ChiTietNhaps.Delete, L("Permission:ChiTietNhaps.Delete"));
 
         var vaccineTonKhoPermission = vaccineCovidGroup.AddPermission(VaccineCovidManagementPermissions.VaccineTonKhos.Default, L("Permission:VaccineTonKhos"));
+        vaccineTonKhoPermission.AddChild(VaccineCovidManagementPermissions.VaccineTonKhos.Create, L("Permission:VaccineTonKhos.Create"));
 
         var donViYTePermission = vaccineCovidGroup.AddPermission(VaccineCovidManagementPermissions.DonViYTes.Default, L("Permission:DonViYTes"));
         donViYTePermission.AddChild(VaccineCovidManagementPermissions.DonViYTes.Create, L("Permission:DonViYTes.Create"));

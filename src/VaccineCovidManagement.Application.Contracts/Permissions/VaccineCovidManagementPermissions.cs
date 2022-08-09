@@ -26,6 +26,7 @@ public static class VaccineCovidManagementPermissions
     public static class VaccineTonKhos
     {
         public const string Default = GroupName + ".VaccineTonKhos";
+        public const string Create = Default + ".Create";
     }
 
     public static class DonViYTes

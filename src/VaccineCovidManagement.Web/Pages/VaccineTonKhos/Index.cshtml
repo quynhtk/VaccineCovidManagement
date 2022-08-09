@@ -13,7 +13,20 @@
 }
 <abp-card>
     <abp-card-header>
-        <abp-card-title>@L["Vaccine tồn kho"]</abp-card-title>
+        <abp-row>
+            <abp-column size-md="_6">
+        <abp-card-title>@L["Quản lý Vaccine"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-end">
+            @if (await AuthorizationService.IsGrantedAsync(VaccineCovidManagementPermissions.VaccineTonKhos.Create))
+            {
+                <abp-button id="VaccineTonKhoButton"
+                        text="@L["Tạo mới Vaccine"].Value"
+                        icon="plus"
+                        button-type="Primary" />
+            }
+            </abp-column>
+        </abp-row>
     </abp-card-header>
     <abp-card-body>
         <abp-table striped-rows="true" id="VaccineTonKhoTable"/>

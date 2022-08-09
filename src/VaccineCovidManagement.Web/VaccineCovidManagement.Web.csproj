@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\VaccineTonKhos\CreateModal.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="Pages\**\*.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -48,6 +52,18 @@
     <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="5.3.3" />
     <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="5.3.3" />
     <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="5.3.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Pages\VaccineTonKhos\CreateModal.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Pages\VaccineTonKhos\CreateModal.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\VaccineTonKhos\CreateModal.cshtml" />
   </ItemGroup>
 
 </Project>
