@@ -39,6 +39,8 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
         public List<SelectListItem> Vaccines { get; set; }
         public async Task OnGetAsync(Guid id)
         {
+            valueOld = new ValueOld();
+
             var chitietxuat = await _chiTietXuatAppService.GetChiTietXuatAsync(id);
             EditChiTietXuat = ObjectMapper.Map<ChiTietXuatDto, EditChiTietXuatViewModal>(chitietxuat);
 
@@ -51,6 +53,9 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
             Vaccines = vaccineLookup.Items
                 .Select(v => new SelectListItem(v.TenVaccineTonKho, v.Id.ToString()))
                 .ToList();
+
+            valueOld.VaccineIDOld = EditChiTietXuat.VaccineTonKhoID;
+            valueOld.SoLuongTonKhoOld = EditChiTietXuat.SoLuongXuat;
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -65,13 +70,13 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
                 switch (checkId)
                 {
                     case true:
-                        var vaccineDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(EditChiTietXuat.VaccineTonKhoID); 
+                        var vaccineDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(EditChiTietXuat.VaccineTonKhoID);
+                        vaccineDto.SoLuongTonKho += resultChangeSoLuong;
                         var mess = "Số vaccine " + '"' + vaccineDto.TenVaccineTonKho + '"' + " trong kho còn " + vaccineDto.SoLuongTonKho + " (liều) không đủ để xuất";
                         if (vaccineDto.SoLuongTonKho < EditChiTietXuat.SoLuongXuat)
                         {
                             throw new UserFriendlyException(L[mess]);
                         }
-                        vaccineDto.SoLuongTonKho += resultChangeSoLuong;
                         VaccineTonKhoDto.TenVaccineTonKho = vaccineDto.TenVaccineTonKho;
                         VaccineTonKhoDto.SoLuongTonKho = vaccineDto.SoLuongTonKho;
                         await _vaccineTonKhoAppService.UpdateAsync(vaccineDto.Id, VaccineTonKhoDto);

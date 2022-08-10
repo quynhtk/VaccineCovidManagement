@@ -16,6 +16,8 @@
                 <abp-select asp-for="EditChiTietXuat.DonViID" asp-items="@Model.DonViYTes"></abp-select>
                 <abp-select asp-for="EditChiTietXuat.VaccineTonKhoID" asp-items="@Model.Vaccines"></abp-select>
                 <abp-input asp-for="EditChiTietXuat.SoLuongXuat"></abp-input>
+                <abp-input asp-for="valueOld.VaccineIDOld"></abp-input>
+                <abp-input asp-for="valueOld.SoLuongTonKhoOld"></abp-input>
             </abp-modal-body>
             <abp-modal-footer buttons="@(AbpModalButtons.Cancel| AbpModalButtons.Save)">
             </abp-modal-footer>

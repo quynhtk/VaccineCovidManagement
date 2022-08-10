@@ -41,8 +41,10 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
         public async Task OnGetAsync(Guid id)
         {
             valueOld = new ValueOld();
+
             var chitietnhap = await _chiTietNhapAppService.GetChiTietNhapAsync(id);
             EditChiTietNhaps = ObjectMapper.Map<ChiTietNhapDto, EditChiTietNhapViewModal>(chitietnhap);
+
             var nhaSanXuatLookup = await _chiTietNhapAppService.GetNhaSanXuatLookupAsync();
             NhaSanXuats = nhaSanXuatLookup.Items
                 .Select(n => new SelectListItem(n.TenNhaSX, n.Id.ToString()))
@@ -52,6 +54,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             Vaccines = vaccineLookup.Items
                 .Select(n => new SelectListItem(n.TenVaccineTonKho, n.Id.ToString()))
                 .ToList();
+
             valueOld.VaccineIDOld = EditChiTietNhaps.VaccineTonKhoID;
             valueOld.SoLuongTonKhoOld = EditChiTietNhaps.SoLuongNhap;
         }

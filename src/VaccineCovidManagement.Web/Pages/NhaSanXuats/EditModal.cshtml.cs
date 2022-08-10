@@ -43,7 +43,7 @@ namespace VaccineCovidManagement.Web.Pages.NhaSanXuats
             [DisplayName("Địa chỉ")]
             public string Diachi { get; set; }
             [DisplayName("Số điện thoại")]
-            [RegularExpression("[0-9]{10}")]
+            [RegularExpression("[0-9]{11}")]
             public string SDT { get; set; }
             [EmailAddress]
             public string Email { get; set; }

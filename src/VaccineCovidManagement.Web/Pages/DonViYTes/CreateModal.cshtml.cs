@@ -50,7 +50,7 @@ namespace VaccineCovidManagement.Web.Pages.DonViYTes
             public string DiaChi { get; set; }
             [Required]
             [DisplayName("Số điện thoại")]
-            [RegularExpression("[0-9]{10}")]
+            [RegularExpression("[0-9]{11}")]
             public string SDT { get; set; }
         }
     }

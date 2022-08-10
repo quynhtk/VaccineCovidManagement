@@ -49,7 +49,7 @@ namespace VaccineCovidManagement.Web.Pages.NhaSanXuats
             public string Diachi { get; set; }
             [Required]
             [DisplayName("Số điện thoại")]
-            [RegularExpression("[0-9]{10}")]
+            [RegularExpression("[0-9]{11}")]
             public string SDT { get; set; }
             [Required]
             [EmailAddress]
