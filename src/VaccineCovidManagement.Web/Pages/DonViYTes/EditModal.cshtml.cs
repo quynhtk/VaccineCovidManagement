@@ -28,17 +28,9 @@ namespace VaccineCovidManagement.Web.Pages.DonViYTes
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var donviyteExist = await _donViYTeAppService.CheckDonViYTeExist(EditDonViYTes.TenDonViYTe);
-            if (donviyteExist == false)
-            {
-                await _donViYTeAppService.UpdateAsync(
-                    EditDonViYTes.Id,
-                    ObjectMapper.Map<EditDonViYTeViewModal, CreateUpdateDonViYTeDto>(EditDonViYTes));
-            }
-            else
-            {
-                throw new UserFriendlyException(L["Đơn vị Y tế " + EditDonViYTes.TenDonViYTe + " đã tồn tại"]);
-            }
+            await _donViYTeAppService.UpdateAsync(
+                EditDonViYTes.Id,
+                ObjectMapper.Map<EditDonViYTeViewModal, CreateUpdateDonViYTeDto>(EditDonViYTes));
             return NoContent();
         }
 

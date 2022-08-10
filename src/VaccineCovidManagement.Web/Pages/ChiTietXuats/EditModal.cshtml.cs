@@ -55,8 +55,8 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
         {
             if (EditChiTietXuat.SoLuongXuat > 0)
             {
-                var vaccineDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(EditChiTietXuat.VaccineTonKhoID);
                 var VaccineTonKhoDto = new CreateUpdateVaccineTonKhoDto();
+                var vaccineDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(EditChiTietXuat.VaccineTonKhoID);
                 var mess = "Số vaccine " + '"' + vaccineDto.TenVaccineTonKho + '"' + " trong kho còn " + vaccineDto.SoLuongTonKho + " (liều) không đủ để xuất";
                 if (vaccineDto.SoLuongTonKho < EditChiTietXuat.SoLuongXuat)
                 {

@@ -103,11 +103,11 @@ namespace VaccineCovidManagement.ChiTietNhaps
             var vaccine = await _vaccineTonKhoRepository.FindVaccineTonKhoByIdAsync(id);
             if (vaccine != null)
             {
-                return false;
+                vaccine.SoLuongTonKho = vaccine.SoLuongTonKho - chitietnhap.SoLuongNhap;
+                await _chiTietNhapRepository.DeleteAsync(chitietnhap);
+                return true;
             }
-            vaccine.SoLuongTonKho = vaccine.SoLuongTonKho - chitietnhap.SoLuongNhap;
-            await _chiTietNhapRepository.DeleteAsync(chitietnhap);
-            return true;
+            return false;
         }
     }
 }

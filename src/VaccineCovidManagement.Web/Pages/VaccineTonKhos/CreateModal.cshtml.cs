@@ -52,6 +52,7 @@ namespace VaccineCovidManagement.Web.Pages.VaccineTonKhos
             [Required]
             [DisplayName("Tên Vaccine")]
             public string TenVaccineTonKho { get; set; }
+            [HiddenInput]
             [DisplayName("Số Lượng tồn kho")]
             public int SoLuongTonKho { get; set; } = 0;
         }

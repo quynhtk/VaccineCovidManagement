@@ -28,16 +28,9 @@ namespace VaccineCovidManagement.Web.Pages.VaccineTonKhos
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var tenVaccineExist = await _vaccineTonKhoAppService.CheckTenVaccineExist(EditVaccineTonKhos.TenVaccineTonKho);
-            if (tenVaccineExist == false)
-            {
-                await _vaccineTonKhoAppService.CreateAsync(
-                    ObjectMapper.Map<EditVaccineTonKhoViewModal, CreateUpdateVaccineTonKhoDto>(EditVaccineTonKhos));
-            }
-            else
-            {
-                throw new UserFriendlyException(L["Vaccine " + EditVaccineTonKhos.TenVaccineTonKho + " đã tồn tại"]);
-            }
+            await _vaccineTonKhoAppService.UpdateAsync(
+                EditVaccineTonKhos.Id,
+                ObjectMapper.Map<EditVaccineTonKhoViewModal, CreateUpdateVaccineTonKhoDto>(EditVaccineTonKhos));
             return NoContent();
         }
 

@@ -28,16 +28,9 @@ namespace VaccineCovidManagement.Web.Pages.NhaSanXuats
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var nhaSanXuatExist = await _nhaSanXuatAppService.CheckTenNhaSanXuatExist(EditNhaSanXuats.TenNhaSX);
-            if (nhaSanXuatExist == false)
-            {
-                await _nhaSanXuatAppService.CreateAsync(
-                    ObjectMapper.Map<EditNhaSanXuatViewModal, CreateUpdateNhaSanXuatDto>(EditNhaSanXuats));
-            }
-            else
-            {
-                throw new UserFriendlyException(L["Nhà sản xuất " + EditNhaSanXuats.TenNhaSX + " đã tồn tại"]);
-            }
+            await _nhaSanXuatAppService.UpdateAsync(
+                EditNhaSanXuats.Id,
+                ObjectMapper.Map<EditNhaSanXuatViewModal, CreateUpdateNhaSanXuatDto>(EditNhaSanXuats));
             return NoContent();
         }
 

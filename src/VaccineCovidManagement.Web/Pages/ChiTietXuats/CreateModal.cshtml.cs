@@ -54,15 +54,15 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
         {
             if (CreateChiTietXuat.SoLuongXuat > 0)
             {
-                var vaccineDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(CreateChiTietXuat.VaccineTonKhoID);
-                var VaccineTonKhoDto = new CreateUpdateVaccineTonKhoDto();
-                var mess = "Số vaccine " + '"' + vaccineDto.TenVaccineTonKho + '"' + " trong kho còn " + vaccineDto.SoLuongTonKho + " (liều) không đủ để xuất";
-                if (vaccineDto.SoLuongTonKho < CreateChiTietXuat.SoLuongXuat)
+                var createVaccine = new CreateUpdateVaccineTonKhoDto();
+                var vaccineSXDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(CreateChiTietXuat.VaccineTonKhoID);
+                var mess = "Số vaccine " + '"' + vaccineSXDto.TenVaccineTonKho + '"' + " trong kho còn " + vaccineSXDto.SoLuongTonKho + " (liều) không đủ để xuất";
+                if (vaccineSXDto.SoLuongTonKho < CreateChiTietXuat.SoLuongXuat)
                 {
                     throw new UserFriendlyException(L[mess]);
                 }
-                VaccineTonKhoDto.SoLuongTonKho = vaccineDto.SoLuongTonKho - CreateChiTietXuat.SoLuongXuat;
-                await _vaccineTonKhoAppService.UpdateAsync(vaccineDto.Id, VaccineTonKhoDto);
+                vaccineSXDto.SoLuongTonKho = vaccineSXDto.SoLuongTonKho - CreateChiTietXuat.SoLuongXuat;
+                await _vaccineTonKhoAppService.UpdateAsync(vaccineSXDto.Id, createVaccine);
                 var upDateChiTiet = ObjectMapper.Map<CreateChiTietXuatViewModal, CreateUpdateChiTietXuatDto>(CreateChiTietXuat);
                 await _chiTietXuatAppService.CreateAsync(upDateChiTiet);
             }
