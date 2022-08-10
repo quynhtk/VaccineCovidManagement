@@ -72,8 +72,7 @@ namespace VaccineCovidManagement.VaccineTonKhos
         public async Task<bool> DeleteAsync(Guid id)
         {
             var vaccineTonKho = await _vaccineTonKhoRepository.FindAsync(id);
-            var vaccineNhap = await _chiTietNhapRepository.FindByIdVaccineTonKhoAsync(id);
-            if (vaccineNhap != null)
+            if (vaccineTonKho.SoLuongTonKho > 0)
             {
                 return false;
             }

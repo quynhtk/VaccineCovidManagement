@@ -64,10 +64,10 @@ $(function () {
                                             .delete(data.record.id)
                                             .then(function (data) {
                                                 if (data) {
-                                                    abp.notify.info(l('Xóa thành công'));
+                                                    abp.notify.info(l('Xóa thành công, lượng Vaccine trong kho đã hết'));
                                                     datatable.ajax.reload();
                                                 } else {
-                                                    abp.message.error(l("Xóa thất bại"));
+                                                    abp.message.error(l("Xóa thất bại, lượng vaccine trong kho đang tồn tại"));
                                                 }
                                             });
                                     }

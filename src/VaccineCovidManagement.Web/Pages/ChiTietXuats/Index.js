@@ -71,7 +71,7 @@ $(function () {
                                                     abp.notify.info(l('Xóa thành công'));
                                                     datatable.ajax.reload();
                                                 } else {
-                                                    abp.message.error(l("Xóa thất bại"));
+                                                    abp.message.error(l("Xóa thất bại, Vaccine đã được xuất đi"));
                                                 }
                                             });
                                     }
