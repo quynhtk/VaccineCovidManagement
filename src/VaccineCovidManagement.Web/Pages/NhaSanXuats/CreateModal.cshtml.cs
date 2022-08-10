@@ -34,7 +34,7 @@ namespace VaccineCovidManagement.Web.Pages.NhaSanXuats
             }
             else
             {
-                throw new UserFriendlyException(L["Nhà sản xuất " + CreateNhaSanXuats.TenNhaSX + " và Vaccine " + CreateNhaSanXuats.TenVaccineSX + " đã tồn tại"]);
+                throw new UserFriendlyException(L["Nhà sản xuất " + CreateNhaSanXuats.TenNhaSX + " đã tồn tại"]);
             }
             return NoContent();
         }

@@ -28,6 +28,8 @@ public class VaccineCovidManagementWebAutoMapperProfile : Profile
         CreateMap<ChiTietXuatDto, Pages.ChiTietXuats.EditModalModel.EditChiTietXuatViewModal>();
         CreateMap<Pages.ChiTietXuats.EditModalModel.EditChiTietXuatViewModal, CreateUpdateChiTietXuatDto>();
 
-        CreateMap<Pages.VaccineTonKhos.CreateModalModel.CreateVaccineTonKhoViewModal, CreateUpdateVaccineTonKhoDto>();
+        CreateMap<Pages.VaccineTonKhos.CreateModalModel.CreateVaccineTonKhoViewModal, CreateUpdateVaccineTonKhoDto>(); 
+        CreateMap<VaccineTonKhoDto, Pages.VaccineTonKhos.EditModalModel.EditVaccineTonKhoViewModal>();
+        CreateMap<Pages.VaccineTonKhos.EditModalModel.EditVaccineTonKhoViewModal, CreateUpdateVaccineTonKhoDto>();
     }
 }

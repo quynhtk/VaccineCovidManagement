@@ -1,55 +1,50 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
-using VaccineCovidManagement.ChiTietNhaps;
 using VaccineCovidManagement.VaccineTonKhos;
 using Volo.Abp;
-using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
 namespace VaccineCovidManagement.Web.Pages.VaccineTonKhos
 {
-    public class CreateModalModel : VaccineCovidManagementPageModel
+    public class EditModalModel : VaccineCovidManagementPageModel
     {
         private readonly VaccineTonKhoAppService _vaccineTonKhoAppService;
 
-        public CreateModalModel(
+        public EditModalModel(
             VaccineTonKhoAppService vaccineTonKhoAppService)
         {
             _vaccineTonKhoAppService = vaccineTonKhoAppService;
         }
 
         [BindProperty]
-        public CreateVaccineTonKhoViewModal CreateVaccineTonKhos { get; set; }
-
-        public void OnGet()
+        public EditVaccineTonKhoViewModal EditVaccineTonKhos { get; set; }
+        public async Task OnGetAsync(Guid Id)
         {
-            CreateVaccineTonKhos = new CreateVaccineTonKhoViewModal();
+            var editvaccine = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(Id);
+            EditVaccineTonKhos = ObjectMapper.Map<VaccineTonKhoDto, EditVaccineTonKhoViewModal>(editvaccine);
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            var tenVaccineExist = await _vaccineTonKhoAppService.CheckTenVaccineExist(CreateVaccineTonKhos.TenVaccineTonKho);
+            var tenVaccineExist = await _vaccineTonKhoAppService.CheckTenVaccineExist(EditVaccineTonKhos.TenVaccineTonKho);
             if (tenVaccineExist == false)
             {
                 await _vaccineTonKhoAppService.CreateAsync(
-                    ObjectMapper.Map<CreateVaccineTonKhoViewModal, CreateUpdateVaccineTonKhoDto>(CreateVaccineTonKhos));
+                    ObjectMapper.Map<EditVaccineTonKhoViewModal, CreateUpdateVaccineTonKhoDto>(EditVaccineTonKhos));
             }
             else
             {
-                throw new UserFriendlyException(L["Vaccine " + CreateVaccineTonKhos.TenVaccineTonKho + " đã tồn tại"]);
+                throw new UserFriendlyException(L["Vaccine " + EditVaccineTonKhos.TenVaccineTonKho + " đã tồn tại"]);
             }
             return NoContent();
         }
 
-        public class CreateVaccineTonKhoViewModal
+        public class EditVaccineTonKhoViewModal
         {
-            [Required]
+            [HiddenInput]
+            public Guid Id { get; set; }
             [DisplayName("Tên Vaccine")]
             public string TenVaccineTonKho { get; set; }
             [DisplayName("Số Lượng tồn kho")]
