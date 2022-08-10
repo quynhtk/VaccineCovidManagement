@@ -100,7 +100,7 @@ namespace VaccineCovidManagement.ChiTietNhaps
         public async Task<bool> DeleteAsync(Guid id)
         {
             var chitietnhap = await _chiTietNhapRepository.FindAsync(id);
-            var vaccine = await _vaccineTonKhoRepository.FindVaccineTonKhoByIdAsync(id);
+            var vaccine = await _vaccineTonKhoRepository.FindAsync(x => x.Id == chitietnhap.VaccineTonKhoID);
             if (vaccine != null)
             {
                 vaccine.SoLuongTonKho = vaccine.SoLuongTonKho - chitietnhap.SoLuongNhap;
