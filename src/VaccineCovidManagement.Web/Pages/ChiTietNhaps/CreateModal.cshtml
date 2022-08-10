@@ -14,7 +14,7 @@
             <abp-modal-header></abp-modal-header>
             <abp-modal-body>
                 <abp-select asp-for="CreateChiTietNhaps.NhaSxID" asp-items="@Model.NhaSanXuats"></abp-select>
-                @*<abp-input asp-for="CreateChiTietNhaps.TenVaccineSX" disabled></abp-input>*@
+                <abp-select asp-for="CreateChiTietNhaps.VaccineTonKhoID" asp-items="@Model.Vaccines"></abp-select>
                 <abp-input asp-for="CreateChiTietNhaps.NgaySx"></abp-input>
                 <abp-input asp-for="CreateChiTietNhaps.HanSuDung"></abp-input>
                 <abp-input asp-for="CreateChiTietNhaps.SoLuongNhap"></abp-input>

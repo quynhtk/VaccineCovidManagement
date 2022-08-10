@@ -15,4 +15,3 @@ namespace VaccineCovidManagement.ChiTietNhaps
         public int SoLuongNhap { get; set; }
     }
 }
-}

@@ -29,7 +29,7 @@ namespace VaccineCovidManagement.ChiTietNhaps
             return await queryable
                 .WhereIf<ChiTietNhap, IMongoQueryable<ChiTietNhap>>(
                     !filter.IsNullOrWhiteSpace(),
-                    chiTietNhap => chiTietNhap.TenVaccineNhap.Contains(filter))
+                    chiTietNhap => chiTietNhap.HanSuDung.Contains(filter))
                 .OrderByDescending(x => x.CreationTime)
                 .As<IMongoQueryable<ChiTietNhap>>()
                 .Skip(skipCount)

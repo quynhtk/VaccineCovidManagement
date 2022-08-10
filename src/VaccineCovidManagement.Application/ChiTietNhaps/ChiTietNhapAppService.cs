@@ -68,11 +68,11 @@ namespace VaccineCovidManagement.ChiTietNhaps
                     nhaSanXuatDtos);
         }
 
-        public async Task<ListResultDto<GetVaccineTonKhoLookup>> GetVaccineTonKhoLookup()
+        public async Task<ListResultDto<GetVaccineTKLookup>> GetVaccineTonKhoLookup()
         {
             var vaccinetk = await _vaccineTonKhoRepository.GetListAsync();
-            var vaccineTKDtos = ObjectMapper.Map<List<VaccineTonKho>, List<GetVaccineTonKhoLookup>>(vaccinetk);
-            return new ListResultDto<GetVaccineTonKhoLookup>(
+            var vaccineTKDtos = ObjectMapper.Map<List<VaccineTonKho>, List<GetVaccineTKLookup>>(vaccinetk);
+            return new ListResultDto<GetVaccineTKLookup>(
                     vaccineTKDtos);
         }
 

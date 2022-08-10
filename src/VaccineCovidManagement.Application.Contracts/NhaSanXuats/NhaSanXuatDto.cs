@@ -9,7 +9,6 @@ namespace VaccineCovidManagement.NhaSanXuats
     {
         public int Stt { get; set; }
         public string TenNhaSX { get; set; }
-        public string TenVaccineSX { get; set; }
         public string Diachi { get; set; }
         public string SDT { get; set; }
         public string Email { get; set; }

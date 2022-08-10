@@ -5,7 +5,7 @@ using Volo.Abp.Application.Dtos;
 
 namespace VaccineCovidManagement.ChiTietNhaps
 {
-    public class GetVaccineTonKhoLookup : EntityDto<Guid>
+    public class GetVaccineTKLookup : EntityDto<Guid>
     {
         public string TenVaccineTonKho { get; set; }
     }

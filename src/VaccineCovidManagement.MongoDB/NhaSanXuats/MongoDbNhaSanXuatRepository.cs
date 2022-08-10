@@ -29,7 +29,7 @@ namespace VaccineCovidManagement.NhaSanXuats
             return await queryable
                 .WhereIf<NhaSanXuat, IMongoQueryable<NhaSanXuat>>(
                     !filter.IsNullOrWhiteSpace(),
-                    nhaSanXuat => nhaSanXuat.TenVaccineSX.Contains(filter))
+                    nhaSanXuat => nhaSanXuat.TenNhaSX.Contains(filter))
                 .OrderByDescending(x => x.CreationTime)
                 .As<IMongoQueryable<NhaSanXuat>>()
                 .Skip(skipCount)

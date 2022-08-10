@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using VaccineCovidManagement.ChiTietNhaps;
 using VaccineCovidManagement.NhaSanXuats;
+using VaccineCovidManagement.VaccineTonKhos;
 using Volo.Abp;
 using Volo.Abp.AspNetCore.Mvc.UI.Bootstrap.TagHelpers.Form;
 
@@ -18,19 +19,24 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
     {
         private readonly ChiTietNhapAppService _chiTietNhapAppService;
         private readonly NhaSanXuatAppService _nhaSanXuatAppService;
+        private readonly VaccineTonKhoAppService _vaccineTonKhoAppService;
 
         public CreateModalModel(
             ChiTietNhapAppService chiTietNhapAppService,
-            NhaSanXuatAppService nhaSanXuatAppService)
+            NhaSanXuatAppService nhaSanXuatAppService,
+            VaccineTonKhoAppService vaccineTonKhoAppService)
         {
             _chiTietNhapAppService = chiTietNhapAppService;
             _nhaSanXuatAppService = nhaSanXuatAppService;
+            _vaccineTonKhoAppService = vaccineTonKhoAppService;
         }
 
         [BindProperty]
         public CreateChiTietNhapViewModal CreateChiTietNhaps { get; set; }
         [BindProperty]
         public List<SelectListItem> NhaSanXuats { get; set; }
+        [BindProperty]
+        public List<SelectListItem> Vaccines { get; set; }
 
         public async void OnGet()
         {
@@ -39,6 +45,11 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             NhaSanXuats = nhaSanXuatLookup.Items
                 .Select(n => new SelectListItem(n.TenNhaSX, n.Id.ToString()))
                 .ToList();
+
+            var vaccineLookup = await _chiTietNhapAppService.GetVaccineTonKhoLookup();
+            Vaccines = vaccineLookup.Items
+                .Select(n => new SelectListItem(n.TenVaccineTonKho, n.Id.ToString()))
+                .ToList();
         }
 
         public async Task<IActionResult> OnPostAsync()
@@ -46,16 +57,17 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             if (CreateChiTietNhaps.SoLuongNhap > 0)
             {
                 var createNhaSanXuat = new CreateUpdateNhaSanXuatDto();
-                var vaccineSXDto = await _nhaSanXuatAppService.GetNhaSanXuatAsync(CreateChiTietNhaps.NhaSxID);
-                createNhaSanXuat.TenNhaSX = vaccineSXDto.TenNhaSX;
-                createNhaSanXuat.TenVaccineSX = vaccineSXDto.TenVaccineSX;
+                var nhaSXDto = await _nhaSanXuatAppService.GetNhaSanXuatAsync(CreateChiTietNhaps.NhaSxID);
+                createNhaSanXuat.TenNhaSX = nhaSXDto.TenNhaSX;
 
                 CreateChiTietNhaps.HanSuDung += " Tháng";
-/*
-                var createVaccine = new CreateUpdateVaccineDto();
-                createVaccine.SoLuongTonKho = createVaccine.SoLuongTonKho + NhapVaccine.SLNhap;
-                await _vaccineAppService.UpdateAsync(vaccineSXDto.Id, createVaccine);
-*/
+
+                var createVaccine = new CreateUpdateVaccineTonKhoDto();
+                var vaccineSXDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(CreateChiTietNhaps.VaccineTonKhoID);
+                createVaccine.TenVaccineTonKho = vaccineSXDto.TenVaccineTonKho;
+                createVaccine.SoLuongTonKho = createVaccine.SoLuongTonKho + CreateChiTietNhaps.SoLuongNhap;
+                await _vaccineTonKhoAppService.UpdateAsync(vaccineSXDto.Id, createVaccine);
+
                 var chitietNhapVaccineDto = ObjectMapper.Map<CreateChiTietNhapViewModal, CreateUpdateChiTietNhapDto>(CreateChiTietNhaps);
                 await _chiTietNhapAppService.CreateAsync(chitietNhapVaccineDto);
             }
@@ -71,9 +83,11 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             [Required]
             [SelectItems(nameof(NhaSanXuats))]
             [DisplayName("Nhà sản xuất")]
-            public Guid NhaSxID { get; set; }/*
-            [DisplayName("Tên Vaccine sản xuất")]
-            public string TenVaccineSX { get; set; }*/
+            public Guid NhaSxID { get; set; }
+            [Required]
+            [SelectItems(nameof(Vaccines))]
+            [DisplayName("Tên Vaccine")]
+            public Guid VaccineTonKhoID { get; set; }
             [Required]
             [DisplayName("Ngày sản xuất")]
             public DateTime NgaySx { get; set; } = DateTime.Now;

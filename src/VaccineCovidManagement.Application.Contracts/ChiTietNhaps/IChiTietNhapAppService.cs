@@ -12,7 +12,7 @@ namespace VaccineCovidManagement.ChiTietNhaps
         Task<PagedResultDto<ChiTietNhapDto>> GetListAsync(GetChiTietNhapInput input);
         Task<ChiTietNhapDto> GetChiTietNhapAsync(Guid id);
         Task<ListResultDto<GetNhaSanXuatLookup>> GetNhaSanXuatLookupAsync();
-        Task<ListResultDto<GetVaccineTonKhoLookup>> GetVaccineTonKhoLookup();
+        Task<ListResultDto<GetVaccineTKLookup>> GetVaccineTonKhoLookup();
         Task<ChiTietNhapDto> CreateAsync(CreateUpdateChiTietNhapDto input);
         Task<ChiTietNhapDto> UpdateAsync(Guid id, CreateUpdateChiTietNhapDto input);
         Task<bool> DeleteAsync(Guid id);

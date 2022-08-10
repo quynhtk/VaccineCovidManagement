@@ -47,8 +47,6 @@ namespace VaccineCovidManagement.Web.Pages.NhaSanXuats
             public Guid Id { get; set; }
             [DisplayName("Tên Nhà sản xuất")]
             public string TenNhaSX { get; set; }
-            [DisplayName("Tên Vaccine sản xuất")]
-            public string TenVaccineSX { get; set; }
             [DisplayName("Địa chỉ")]
             public string Diachi { get; set; }
             [DisplayName("Số điện thoại")]

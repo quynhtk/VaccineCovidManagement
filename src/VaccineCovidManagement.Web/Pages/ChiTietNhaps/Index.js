@@ -23,8 +23,8 @@ $(function () {
                     data: "tenNhaSX"
                 },
                 {
-                    title: l("Tên Vaccine sản xuất"),
-                    data: "tenVaccineSX"
+                    title: l("Tên Vaccine nhập"),
+                    data: "tenVaccineNhap"
                 },
                 {
                     title: l("Ngày sản xuất"),

@@ -23,10 +23,6 @@ $(function () {
                     data: "tenNhaSX"
                 },
                 {
-                    title: l("Tên Vaccine sản xuất"),
-                    data: "tenVaccineSX"
-                },
-                {
                     title: l("Địa Chỉ"),
                     data: "diachi"
                 },
