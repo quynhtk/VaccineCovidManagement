@@ -3,9 +3,9 @@
   "texts": {
     "Menu:Home": "Trang chủ",
     "Menu:NhaSanXuats": "Nhà sản xuất",
-    "Menu:ChiTietNhaps": "Vaccine nhập",
     "Menu:VaccineTonKhos": "Quản lý Vaccine",
     "Menu:DonViYTes": "Đơn vị Y tế",
+    "Menu:ChiTietNhaps": "Vaccine nhập",
     "Menu:ChiTietXuats": "Vaccine xuất",
     "Welcome": "Chào mừng bạn",
     "LongWelcomeMessage": "Chào mừng bạn đến ứng dụng. Đây là một dự án khởi nghiệp dựa trên khung ABP. Để biết thêm thông tin, hãy truy cập abp.io.",
