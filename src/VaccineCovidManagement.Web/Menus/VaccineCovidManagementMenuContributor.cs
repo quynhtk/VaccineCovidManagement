@@ -44,15 +44,6 @@ public class VaccineCovidManagementMenuContributor : IMenuContributor
                         url: "/NhaSanXuats")
             );
         }
-        if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.ChiTietNhaps.Default))
-        {
-            context.Menu.AddItem(
-                new ApplicationMenuItem(
-                        "VaccineCovidManagement.ChiTietNhaps",
-                        l["Menu:ChiTietNhaps"],
-                        url: "/ChiTietNhaps")
-            );
-        }
         if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.VaccineTonKhos.Default))
         {
             context.Menu.AddItem(
@@ -69,6 +60,15 @@ public class VaccineCovidManagementMenuContributor : IMenuContributor
                         "VaccineCovidManagement.DonViYTes",
                         l["Menu:DonViYTes"],
                         url: "/DonViYTes")
+            );
+        }
+        if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.ChiTietNhaps.Default))
+        {
+            context.Menu.AddItem(
+                new ApplicationMenuItem(
+                        "VaccineCovidManagement.ChiTietNhaps",
+                        l["Menu:ChiTietNhaps"],
+                        url: "/ChiTietNhaps")
             );
         }
         if (await context.IsGrantedAsync(VaccineCovidManagementPermissions.ChiTietXuats.Default))
