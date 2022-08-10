@@ -25,12 +25,11 @@ namespace VaccineCovidManagement.VaccineTonKhos
             string sorting,
             string filter)
         {
-
             var queryable = await GetMongoQueryableAsync();
             return await queryable
                 .WhereIf<VaccineTonKho, IMongoQueryable<VaccineTonKho>>(
                     !filter.IsNullOrWhiteSpace(),
-                    vaccineTonKho => vaccineTonKho.TenVaccineTonKho.Contains(filter))
+                    vaccinetonkho => vaccinetonkho.TenVaccineTonKho.Contains(filter))
                 .OrderByDescending(x => x.CreationTime)
                 .As<IMongoQueryable<VaccineTonKho>>()
                 .Skip(skipCount)

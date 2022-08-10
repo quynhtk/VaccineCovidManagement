@@ -29,7 +29,7 @@ namespace VaccineCovidManagement.DonViYTes
             return await queryable
                 .WhereIf<DonViYTe, IMongoQueryable<DonViYTe>>(
                     !filter.IsNullOrWhiteSpace(),
-                    nhaSanXuat => nhaSanXuat.TenDonViYTe.Contains(filter))
+                    donviyte => donviyte.TenDonViYTe.Contains(filter))
                 .OrderByDescending(x => x.CreationTime)
                 .As<IMongoQueryable<DonViYTe>>()
                 .Skip(skipCount)
