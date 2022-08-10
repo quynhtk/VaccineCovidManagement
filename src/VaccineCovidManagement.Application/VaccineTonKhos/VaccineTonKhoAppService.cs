@@ -41,9 +41,6 @@ namespace VaccineCovidManagement.VaccineTonKhos
             {
                 item.Stt = stt;
                 stt++;
-                var tenvaccine = await _chiTietNhapRepository.FindAsync(item.ChiTietNhapId);
-                item.TenVaccineTonKho = tenvaccine.TenVaccineSX;
-                item.SoLuongTonKho = item.SoLuongTonKho + tenvaccine.SoLuongNhap;
             }
             return new PagedResultDto<VaccineTonKhoDto>(
                     count,
@@ -56,14 +53,6 @@ namespace VaccineCovidManagement.VaccineTonKhos
             return ObjectMapper.Map<VaccineTonKho, VaccineTonKhoDto>(vaccinetk);
         }
 
-        public async Task<ListResultDto<GetChiTietNhapLookup>> GetChiTietNhapLookupAsync()
-        {
-            var vaccinenhap = await _chiTietNhapRepository.GetListAsync();
-            var chitietnhapDtos = ObjectMapper.Map<List<ChiTietNhap>, List<GetChiTietNhapLookup>>(vaccinenhap);
-            return new ListResultDto<GetChiTietNhapLookup>(
-                    chitietnhapDtos);
-        }
-
         public async Task<VaccineTonKhoDto> CreateAsync(CreateUpdateVaccineTonKhoDto input)
         {
             var createvaccine = ObjectMapper.Map<CreateUpdateVaccineTonKhoDto, VaccineTonKho>(input);
@@ -74,10 +63,32 @@ namespace VaccineCovidManagement.VaccineTonKhos
         public async Task<VaccineTonKhoDto> UpdateAsync(Guid id, CreateUpdateVaccineTonKhoDto input)
         {
             var updatevaccine = await _vaccineTonKhoRepository.FindAsync(id);
-            updatevaccine.ChiTietNhapId = input.ChiTietNhapId;
+            updatevaccine.TenVaccineTonKho = input.TenVaccineTonKho;
             updatevaccine.SoLuongTonKho = input.SoLuongTonKho;
             await _vaccineTonKhoRepository.UpdateAsync(updatevaccine);
             return ObjectMapper.Map<VaccineTonKho, VaccineTonKhoDto>(updatevaccine);
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var vaccineTonKho = await _vaccineTonKhoRepository.FindAsync(id);
+            var vaccineNhap = await _chiTietNhapRepository.FindByIdVaccineTonKhoAsync(id);
+            if (vaccineNhap != null)
+            {
+                return false;
+            }
+            await _vaccineTonKhoRepository.DeleteAsync(vaccineTonKho);
+            return true;
+        }
+
+        public async Task<bool> CheckTenVaccineExist(string tenVaccine)
+        {
+            var vaccineTonKhoExist = await _vaccineTonKhoRepository.FindByVaccineTonKhoAsync(tenVaccine);
+            if (vaccineTonKhoExist != null)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

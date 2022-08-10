@@ -41,7 +41,13 @@ namespace VaccineCovidManagement.VaccineTonKhos
         public async Task<VaccineTonKho> FindVaccineTonKhoByIdAsync(Guid id)
         {
             var queryable = await GetMongoQueryableAsync();
-            return await queryable.FirstOrDefaultAsync(x => x.ChiTietNhapId == id);
+            return await queryable.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<VaccineTonKho> FindByVaccineTonKhoAsync(string tenVaccine)
+        {
+            var queryable = await GetMongoQueryableAsync();
+            return await queryable.FirstOrDefaultAsync(x => x.TenVaccineTonKho == tenVaccine);
         }
     }
 }

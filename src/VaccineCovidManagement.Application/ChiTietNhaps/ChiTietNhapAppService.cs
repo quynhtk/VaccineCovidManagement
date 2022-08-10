@@ -45,7 +45,8 @@ namespace VaccineCovidManagement.ChiTietNhaps
                 item.Stt = stt++;
                 var noiSX = await _nhaSanXuatRepository.FindAsync(item.NhaSxID);
                 item.TenNhaSX = noiSX.TenNhaSX;
-                item.TenVaccineSX = noiSX.TenVaccineSX;
+                var vaccine = await _vaccineTonKhoRepository.FindAsync(item.VaccineTonKhoID);
+                item.TenVaccineNhap = vaccine.TenVaccineTonKho;
             }
             var count = await _chiTietNhapRepository.GetCountAsync();
             return new PagedResultDto<ChiTietNhapDto>(
@@ -67,6 +68,14 @@ namespace VaccineCovidManagement.ChiTietNhaps
                     nhaSanXuatDtos);
         }
 
+        public async Task<ListResultDto<GetVaccineTonKhoLookup>> GetVaccineTonKhoLookup()
+        {
+            var vaccinetk = await _vaccineTonKhoRepository.GetListAsync();
+            var vaccineTKDtos = ObjectMapper.Map<List<VaccineTonKho>, List<GetVaccineTonKhoLookup>>(vaccinetk);
+            return new ListResultDto<GetVaccineTonKhoLookup>(
+                    vaccineTKDtos);
+        }
+
         public async Task<ChiTietNhapDto> CreateAsync(CreateUpdateChiTietNhapDto input)
         {
             var chiTietNhap = ObjectMapper.Map<CreateUpdateChiTietNhapDto, ChiTietNhap>(input);
@@ -79,7 +88,8 @@ namespace VaccineCovidManagement.ChiTietNhaps
             var chiTietNhap = await _chiTietNhapRepository.FindAsync(id);
             chiTietNhap.NhaSxID = input.NhaSxID;
             chiTietNhap.TenNhaSX = input.TenNhaSX;
-            chiTietNhap.TenVaccineSX = input.TenVaccineSX;
+            chiTietNhap.VaccineTonKhoID = input.VaccineTonKhoID;
+            chiTietNhap.TenVaccineNhap = input.TenVaccineNhap;
             chiTietNhap.NgaySx = input.NgaySx;
             chiTietNhap.HanSuDung = input.HanSuDung;
             chiTietNhap.SoLuongNhap = input.SoLuongNhap;

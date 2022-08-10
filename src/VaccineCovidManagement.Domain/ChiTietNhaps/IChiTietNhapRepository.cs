@@ -16,5 +16,6 @@ namespace VaccineCovidManagement.ChiTietNhaps
                 string filter
             );
         Task<ChiTietNhap> FindByIdNoiSanXuatAsync(Guid id);
+        Task<ChiTietNhap> FindByIdVaccineTonKhoAsync(Guid id);
     }
 }

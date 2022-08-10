@@ -64,7 +64,6 @@ namespace VaccineCovidManagement.NhaSanXuats
         {
             var nhaSX = await _nhaSanXuatRepository.FindAsync(id);
             nhaSX.TenNhaSX = input.TenNhaSX;
-            nhaSX.TenVaccineSX = input.TenVaccineSX;
             nhaSX.Diachi = input.Diachi;
             nhaSX.Email = input.Email;
             nhaSX.SDT = input.SDT;

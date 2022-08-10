@@ -19,10 +19,10 @@ public class VaccineCovidManagementApplicationAutoMapperProfile : Profile
 
         CreateMap<ChiTietNhap, ChiTietNhapDto>();
         CreateMap<NhaSanXuat, GetNhaSanXuatLookup>();
+        CreateMap<VaccineTonKho, ChiTietNhaps.GetVaccineTonKhoLookup>();
         CreateMap<CreateUpdateChiTietNhapDto, ChiTietNhap>();
 
         CreateMap<VaccineTonKho, VaccineTonKhoDto>();
-        CreateMap<ChiTietNhap, GetChiTietNhapLookup>();
         CreateMap<CreateUpdateVaccineTonKhoDto, VaccineTonKho>();
 
         CreateMap<DonViYTe, DonViYTeDto>();
@@ -30,7 +30,7 @@ public class VaccineCovidManagementApplicationAutoMapperProfile : Profile
 
         CreateMap<ChiTietXuat, ChiTietXuatDto>();
         CreateMap<DonViYTe, GetDonViYTeLookup>();
-        CreateMap<VaccineTonKho, GetVaccineTonKhoLookup>();
+        CreateMap<VaccineTonKho, ChiTietXuats.GetVaccineTonKhoLookup>();
         CreateMap<CreateUpdateChiTietXuatDto, ChiTietXuat>();
     }
 }

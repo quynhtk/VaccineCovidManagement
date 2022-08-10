@@ -9,7 +9,6 @@ namespace VaccineCovidManagement.VaccineTonKhos
 {
     public class VaccineTonKho : AuditedAggregateRoot<Guid>
     {
-        public Guid ChiTietNhapId { get; set; }
         public string TenVaccineTonKho { get; set; }
         public int SoLuongTonKho { get; set; }
     }

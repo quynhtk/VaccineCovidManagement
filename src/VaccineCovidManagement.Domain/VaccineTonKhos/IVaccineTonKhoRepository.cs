@@ -16,5 +16,6 @@ namespace VaccineCovidManagement.VaccineTonKhos
                 string filter
             );
         Task<VaccineTonKho> FindVaccineTonKhoByIdAsync(Guid id);
+        Task<VaccineTonKho> FindByVaccineTonKhoAsync(string tenVaccine);
     }
 }

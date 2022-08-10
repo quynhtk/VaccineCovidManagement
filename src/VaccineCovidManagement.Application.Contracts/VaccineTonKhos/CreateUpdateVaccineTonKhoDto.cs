@@ -6,7 +6,7 @@ namespace VaccineCovidManagement.VaccineTonKhos
 {
     public class CreateUpdateVaccineTonKhoDto
     {
-        public Guid ChiTietNhapId { get; set; }
+        public string TenVaccineTonKho { get; set; }
         public int SoLuongTonKho { get; set; }
     }
 }

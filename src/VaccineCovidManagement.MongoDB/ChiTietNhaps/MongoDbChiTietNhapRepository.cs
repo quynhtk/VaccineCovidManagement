@@ -29,7 +29,7 @@ namespace VaccineCovidManagement.ChiTietNhaps
             return await queryable
                 .WhereIf<ChiTietNhap, IMongoQueryable<ChiTietNhap>>(
                     !filter.IsNullOrWhiteSpace(),
-                    chiTietNhap => chiTietNhap.TenVaccineSX.Contains(filter))
+                    chiTietNhap => chiTietNhap.TenVaccineNhap.Contains(filter))
                 .OrderByDescending(x => x.CreationTime)
                 .As<IMongoQueryable<ChiTietNhap>>()
                 .Skip(skipCount)
@@ -41,6 +41,12 @@ namespace VaccineCovidManagement.ChiTietNhaps
         {
             var queryable = await GetMongoQueryableAsync();
             return await queryable.FirstOrDefaultAsync(c => c.NhaSxID == id);
+        }
+
+        public async Task<ChiTietNhap> FindByIdVaccineTonKhoAsync(Guid id)
+        {
+            var queryable = await GetMongoQueryableAsync();
+            return await queryable.FirstOrDefaultAsync(x => x.VaccineTonKhoID == id);
         }
     }
 }
