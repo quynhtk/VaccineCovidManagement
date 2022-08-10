@@ -30,7 +30,7 @@ namespace VaccineCovidManagement.ChiTietNhaps
         {
             if (input.Sorting.IsNullOrWhiteSpace())
             {
-                input.Sorting = nameof(ChiTietNhap.TenNhaSX);
+                input.Sorting = nameof(ChiTietNhap.TenVaccineNhap);
             }
             var chiTietNhap = await _chiTietNhapRepository.GetListAsync(
                     input.SkipCount,

@@ -65,7 +65,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
                 var createVaccine = new CreateUpdateVaccineTonKhoDto();
                 var vaccineSXDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(CreateChiTietNhaps.VaccineTonKhoID);
                 createVaccine.TenVaccineTonKho = vaccineSXDto.TenVaccineTonKho;
-                createVaccine.SoLuongTonKho = createVaccine.SoLuongTonKho + CreateChiTietNhaps.SoLuongNhap;
+                createVaccine.SoLuongTonKho = vaccineSXDto.SoLuongTonKho + CreateChiTietNhaps.SoLuongNhap;
                 await _vaccineTonKhoAppService.UpdateAsync(vaccineSXDto.Id, createVaccine);
 
                 var chitietNhapVaccineDto = ObjectMapper.Map<CreateChiTietNhapViewModal, CreateUpdateChiTietNhapDto>(CreateChiTietNhaps);

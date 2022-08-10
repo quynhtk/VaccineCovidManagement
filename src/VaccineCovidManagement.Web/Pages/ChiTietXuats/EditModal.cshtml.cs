@@ -62,10 +62,11 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
                 {
                     throw new UserFriendlyException(L[mess]);
                 }
-                /*VaccineTonKhoDto.SoLuongTonKho = vaccineDto.SoLuongTonKho - CreateChiTietXuat.SoLuongXuat;
-                await _vaccineTonKhoAppService.UpdateAsync(vaccineDto.Id, VaccineTonKhoDto);*/
+                VaccineTonKhoDto.TenVaccineTonKho = vaccineDto.TenVaccineTonKho;
+                VaccineTonKhoDto.SoLuongTonKho = vaccineDto.SoLuongTonKho - EditChiTietXuat.SoLuongXuat;
+                await _vaccineTonKhoAppService.UpdateAsync(vaccineDto.Id, VaccineTonKhoDto);
                 var upDateChiTiet = ObjectMapper.Map<EditChiTietXuatViewModal, CreateUpdateChiTietXuatDto>(EditChiTietXuat);
-                await _chiTietXuatAppService.CreateAsync(upDateChiTiet);
+                await _chiTietXuatAppService.UpdateAsync(EditChiTietXuat.Id, upDateChiTiet);
             }
             else
             {

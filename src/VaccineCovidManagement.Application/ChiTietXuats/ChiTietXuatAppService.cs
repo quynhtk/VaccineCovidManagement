@@ -30,7 +30,7 @@ namespace VaccineCovidManagement.ChiTietXuats
         {
             if (input.Sorting.IsNullOrWhiteSpace())
             {
-                input.Sorting = nameof(ChiTietXuat.CreationTime);
+                input.Sorting = nameof(ChiTietXuat.TenVaccineXuat);
             }
             var chiTietXuat = await _chiTietXuatRepository.GetListAsync(
                     input.SkipCount,
