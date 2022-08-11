@@ -10,7 +10,7 @@ $(function () {
             serverSide: true,
             paging: true,
             order: [[1, "asc"]],
-            searching: true,
+            searching: false,
             scrollX: true,
             ajax: abp.libs.datatables.createAjax(vaccineCovidManagement.chiTietNhaps.chiTietNhap.getList),
             columnDefs: [
@@ -31,7 +31,7 @@ $(function () {
                     data: "ngaySx"
                 },
                 {
-                    title: l("Hạn sử dụng"),
+                    title: l("Hạn sử dụng (Tháng)"),
                     data: "hanSuDung"
                 },
                 {

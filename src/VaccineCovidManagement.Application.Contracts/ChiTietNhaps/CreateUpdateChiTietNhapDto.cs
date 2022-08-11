@@ -11,7 +11,7 @@ namespace VaccineCovidManagement.ChiTietNhaps
         public Guid VaccineTonKhoID { get; set; }
         public string TenVaccineNhap { get; set; }
         public DateTime NgaySx { get; set; }
-        public string HanSuDung { get; set; }
+        public int HanSuDung { get; set; }
         public int SoLuongNhap { get; set; }
     }
 }

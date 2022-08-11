@@ -92,8 +92,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
                         break;
                 }
                 createNhaSanXuat.TenNhaSX = nhaSXDto.TenNhaSX;
-                EditChiTietNhaps.HanSuDung += " Tháng";
-                if (EditChiTietNhaps.HanSuDung == "0 Tháng")
+                if (EditChiTietNhaps.HanSuDung <= 0)
                 {
                     throw new UserFriendlyException(L["Hạn sử dụng phải lớn hơn 0"]);
                 }
@@ -121,7 +120,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             [DisplayName("Ngày sản xuất")]
             public DateTime NgaySx { get; set; } = DateTime.Now;
             [DisplayName("Hạn sử dụng")]
-            public string HanSuDung { get; set; }
+            public int HanSuDung { get; set; }
             [DisplayName("Số Lượng Nhập")]
             public int SoLuongNhap { get; set; }
         }

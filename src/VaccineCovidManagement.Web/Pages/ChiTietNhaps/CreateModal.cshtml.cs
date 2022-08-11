@@ -60,8 +60,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
                 var nhaSXDto = await _nhaSanXuatAppService.GetNhaSanXuatAsync(CreateChiTietNhaps.NhaSxID);
                 createNhaSanXuat.TenNhaSX = nhaSXDto.TenNhaSX;
 
-                CreateChiTietNhaps.HanSuDung += " Tháng";
-                if (CreateChiTietNhaps.HanSuDung == "0 Tháng")
+                if (CreateChiTietNhaps.HanSuDung <= 0)
                 {
                     throw new UserFriendlyException(L["Hạn sử dụng phải lớn hơn 0"]);
                 }
@@ -97,7 +96,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
             public DateTime NgaySx { get; set; } = DateTime.Now;
             [Required]
             [DisplayName("Hạn sử dụng")]
-            public string HanSuDung { get; set; }
+            public int HanSuDung { get; set; }
             [Required]
             [DisplayName("Số Lượng Nhập")]
             public int SoLuongNhap { get; set; }
