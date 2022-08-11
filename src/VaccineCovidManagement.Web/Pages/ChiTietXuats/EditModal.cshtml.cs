@@ -61,7 +61,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
         public async Task<IActionResult> OnPostAsync()
         {
             var checkId = (valueOld.VaccineIDOld == EditChiTietXuat.VaccineTonKhoID);
-            var resultChangeSoLuong = EditChiTietXuat.SoLuongXuat - valueOld.SoLuongTonKhoOld;
+            var resultChangeSoLuong = valueOld.SoLuongTonKhoOld - EditChiTietXuat.SoLuongXuat ;
             var VaccineTonKhoDto = new CreateUpdateVaccineTonKhoDto();
             var createDonViYTe = new CreateUpdateDonViYTeDto();
             var dvytDto = await _donViYTeAppService.GetDonViYTeAsync(EditChiTietXuat.DonViID);
@@ -71,12 +71,12 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietXuats
                 {
                     case true:
                         var vaccineDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(EditChiTietXuat.VaccineTonKhoID);
-                        vaccineDto.SoLuongTonKho += resultChangeSoLuong;
                         var mess = "Số vaccine " + '"' + vaccineDto.TenVaccineTonKho + '"' + " trong kho còn " + vaccineDto.SoLuongTonKho + " (liều) không đủ để xuất";
-                        if (vaccineDto.SoLuongTonKho < EditChiTietXuat.SoLuongXuat)
+                        if (vaccineDto.SoLuongTonKho < (-resultChangeSoLuong))
                         {
                             throw new UserFriendlyException(L[mess]);
                         }
+                        vaccineDto.SoLuongTonKho += resultChangeSoLuong;
                         VaccineTonKhoDto.TenVaccineTonKho = vaccineDto.TenVaccineTonKho;
                         VaccineTonKhoDto.SoLuongTonKho = vaccineDto.SoLuongTonKho;
                         await _vaccineTonKhoAppService.UpdateAsync(vaccineDto.Id, VaccineTonKhoDto);

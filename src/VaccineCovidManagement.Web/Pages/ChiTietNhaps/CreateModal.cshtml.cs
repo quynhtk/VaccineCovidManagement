@@ -61,6 +61,10 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
                 createNhaSanXuat.TenNhaSX = nhaSXDto.TenNhaSX;
 
                 CreateChiTietNhaps.HanSuDung += " Tháng";
+                if (CreateChiTietNhaps.HanSuDung == "0 Tháng")
+                {
+                    throw new UserFriendlyException(L["Hạn sử dụng phải lớn hơn 0"]);
+                }
 
                 var createVaccine = new CreateUpdateVaccineTonKhoDto();
                 var vaccineSXDto = await _vaccineTonKhoAppService.GetVaccineTonKhoAsync(CreateChiTietNhaps.VaccineTonKhoID);
