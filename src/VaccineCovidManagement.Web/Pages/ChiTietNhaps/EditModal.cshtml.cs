@@ -94,7 +94,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
                 createNhaSanXuat.TenNhaSX = nhaSXDto.TenNhaSX;
                 if (EditChiTietNhaps.HanSuDung <= 0)
                 {
-                    throw new UserFriendlyException(L["Hạn sử dụng phải lớn hơn 0"]);
+                    throw new UserFriendlyException(L["Hạn sử dụng phải lớn hơn 0 tháng"]);
                 }
 
                 var chitietNhapVaccineDto = ObjectMapper.Map<EditChiTietNhapViewModal, CreateUpdateChiTietNhapDto>(EditChiTietNhaps);

@@ -62,7 +62,7 @@ namespace VaccineCovidManagement.Web.Pages.ChiTietNhaps
 
                 if (CreateChiTietNhaps.HanSuDung <= 0)
                 {
-                    throw new UserFriendlyException(L["Hạn sử dụng phải lớn hơn 0"]);
+                    throw new UserFriendlyException(L["Hạn sử dụng phải lớn hơn 0 tháng"]);
                 }
 
                 var createVaccine = new CreateUpdateVaccineTonKhoDto();
